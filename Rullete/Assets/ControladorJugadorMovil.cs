@@ -111,6 +111,17 @@ public class ControladorJugadorMovil : MonoBehaviour
         }
     }
 
+    public void RefrescarDatosOriginales()
+    {
+        if (revolverPropio != null)
+        {
+            padreOriginalMesa = revolverPropio.transform.parent;
+            posicionOriginalMesa = revolverPropio.transform.position;
+            rotacionOriginalMesa = revolverPropio.transform.rotation;
+            escalaOriginalMesa = revolverPropio.transform.lossyScale;
+        }
+    }
+
     void Update()
     {
         ManejarVistaTouch();
@@ -316,6 +327,12 @@ public class ControladorJugadorMovil : MonoBehaviour
 
     public void PenalizarYTomarArma()
     {
+        if (revolverPropio == null)
+        {
+            Debug.LogError("No se puede penalizar: revolverPropio es null.");
+            return;
+        }
+
         // AQUÍ SÍ ACTIVAMOS EL EMPARENTAMIENTO DEL REVÓLVER A LA MANO
         EquiparRevolverEnMano(); 
 
@@ -325,12 +342,13 @@ public class ControladorJugadorMovil : MonoBehaviour
             detector.esperandoAgarre = true;
         }
 
-        StartCoroutine(RutinaSoltarArma());
+        //StartCoroutine(RutinaSoltarArma());
     }
-
+/*
     IEnumerator RutinaSoltarArma()
     {
         yield return new WaitForSeconds(4.0f); 
         RegresarRevolverAMesa();
     }
+*/
 }

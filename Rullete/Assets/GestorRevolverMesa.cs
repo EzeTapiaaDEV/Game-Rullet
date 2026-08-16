@@ -33,6 +33,8 @@ public class GestorRevolverMesa : MonoBehaviour
 
             // Le asignamos la nueva referencia al script principal del jugador
             jugadorMovil.revolverPropio = nuevoRev;
+
+            jugadorMovil.RefrescarDatosOriginales();
             
             Debug.Log("Revólver recreado exitosamente en la mesa por el gestor separado.");
         }
